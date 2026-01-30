@@ -23,7 +23,7 @@ It showcases my projects, skills, and contact details — serving as my central 
 
 ## ⚙️ Setup
 ```bash
-git clone https://github.com/cplabs/christosp.git
+git clone https://github.com/ChrisPa691/christosp.git
 cd christosp
 npm install
 npm run dev
@@ -44,13 +44,6 @@ src/
 ├── lib/
 └── styles/
 ```
-
----
-
-## ☁️ Deployment
-1. Push the repo to GitHub  
-2. Connect it to [Vercel](https://vercel.com)  
-3. Add a custom domain (optional): `christosp.dev` or `christosp.vercel.app`
 
 ---
 
