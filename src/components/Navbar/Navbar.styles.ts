@@ -1,0 +1,9 @@
+export const navRoot = 'fixed top-0 left-0 right-0 w-full bg-(--surface) border-b border-(--border) z-1000';
+export const navInner = 'flex justify-between items-center h-16 flex-nowrap gap-6';
+export const brand = 'text-(--text-primary) no-underline text-lg font-bold tracking-wide transition-opacity hover:opacity-80 whitespace-nowrap';
+export const navList = 'flex list-none m-0 p-0 gap-3 flex-nowrap';
+export const navLinkBase = 'block px-6 py-2.5 no-underline text-sm font-medium rounded transition-all hover:text-(--text-primary) hover:bg-(--surface-elevated) whitespace-nowrap';
+export const navLinkActive = 'text-(--text-primary) bg-(--surface-elevated)';
+export const navLinkInactive = 'text-(--text-secondary)';
+export const socialWrap = 'flex items-center gap-4 ml-2 pl-2 shrink-0';
+export const socialLink = 'text-(--text-secondary) hover:text-(--text-primary) transition-colors flex items-center justify-center';
