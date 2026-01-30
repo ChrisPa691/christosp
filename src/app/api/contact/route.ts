@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import Resend from "resend";
+import { Resend } from "resend";
 
 const emailPattern = /.+@.+\..+/;
 
@@ -62,7 +62,7 @@ export async function POST(request: Request) {
       to: contactTo,
       subject,
       text: content,
-      replyTo: email,
+      reply_to: email,
     });
 
     if (error) {
