@@ -1,12 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Space_Grotesk, Manrope, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar/index";
 import { Footer } from "@/components/Footer/index";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const displayFont = Space_Grotesk({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const bodyFont = Manrope({
+  variable: "--font-body",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -87,38 +94,40 @@ export default function RootLayout({
             background: var(--bg);
             color: var(--text-primary);
             min-height: 100vh;
-            font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
-            line-height: 1.6;
+            font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+            line-height: 1.65;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
           }
 
-          h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
+          h1, h2, h3 {
+            font-family: var(--font-display), system-ui, -apple-system, sans-serif;
             color: var(--text-primary);
+          }
+
+          h1 {
+            font-size: clamp(2.7rem, 5vw, 4.4rem);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -0.01em;
           }
 
           h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            line-height: 1.2;
-            letter-spacing: -0.01em;
-            color: var(--text-primary);
+            font-size: clamp(2.1rem, 3.8vw, 3.2rem);
+            font-weight: 750;
+            line-height: 1.14;
+            letter-spacing: -0.008em;
           }
 
           h3 {
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            font-weight: 600;
-            line-height: 1.3;
-            color: var(--text-primary);
+            font-size: clamp(1.55rem, 3vw, 2.1rem);
+            font-weight: 700;
+            line-height: 1.2;
           }
 
           p {
             font-size: 1rem;
-            line-height: 1.7;
+            line-height: 1.65;
             color: var(--text-secondary);
           }
 
@@ -128,12 +137,14 @@ export default function RootLayout({
         `}} />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${displayFont.variable} ${bodyFont.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="page-wrapper">
-          <div className="w-full max-w-6xl px-4 sm:px-6 lg:px-10 mx-auto">
+        <div className="min-h-screen flex flex-col items-center">
+          <div className="page-wrapper w-full max-w-6xl px-4 sm:px-6 lg:px-10 flex flex-col flex-1">
             <Navbar />
-            {children}
+            <div className="flex-1 w-full">
+              {children}
+            </div>
             <Footer />
           </div>
         </div>
