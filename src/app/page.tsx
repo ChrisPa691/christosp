@@ -8,9 +8,9 @@ import { Pill } from "@/components/Pill";
 
 export default function Home() {
   const history = [
+    { year: "2024", title: "CS studies", detail: "Advanced algorithms, databases, and distributed systems." },
     { year: "2026", title: "Portfolio refresh", detail: "Rebuilt christosp with Next.js and Tailwind v4." },
     { year: "2025", title: "Flowboard v1", detail: "Shipped kanban app with auth and real-time lanes." },
-    { year: "2024", title: "CS studies", detail: "Advanced algorithms, databases, and distributed systems." },
     { year: "2023", title: "First production site", detail: "Delivered a responsive client site with modern UI." },
   ];
 
@@ -20,8 +20,8 @@ export default function Home() {
 
       <div className="relative">
         {/* Hero Section */}
-        <section className="min-h-screen flex items-center py-20">
-          <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center px-6 lg:px-0">
+        <section className="min-h-screen flex items-center py-32">
+          <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center px-8 lg:px-0">
             {/* Portrait / Visual */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -60,14 +60,14 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="order-1 lg:order-1 space-y-8"
+              className="order-1 lg:order-1 space-y-10"
             >
-              <div className="inline-flex items-center gap-2 rounded-full border border-(--border) bg-(--surface) px-4 py-2 text-(--text-secondary) text-sm shadow-sm shadow-blue-500/10">
+              <div className="inline-flex items-center gap-3 rounded-full border border-(--border) bg-(--surface) px-6 py-3 text-(--text-secondary) text-sm shadow-sm shadow-blue-500/10">
                 <span className="h-2 w-2 rounded-full bg-(--accent) animate-pulse" />
                 Available for freelance & collaborations
               </div>
 
-              <div className="space-y-5">
+              <div className="space-y-6">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight">
                   I build confident web experiences that feel fast, clear, and intentional.
                 </h1>
@@ -78,7 +78,7 @@ export default function Home() {
               </div>
 
               <motion.div
-                className="flex flex-wrap gap-4"
+                className="flex flex-wrap gap-6"
                 initial="hidden"
                 animate="show"
                 variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
@@ -92,7 +92,7 @@ export default function Home() {
                 ))}
               </motion.div>
 
-              <div className="flex flex-wrap gap-3 pt-2 text-sm text-(--text-muted)">
+              <div className="flex flex-wrap gap-4 pt-4 text-sm text-(--text-muted)">
                 {["Next.js", "TypeScript", "Tailwind", "Framer Motion", "Prisma", "Postgres"].map((tool) => (
                   <Pill key={tool} className="bg-(--surface-elevated) text-(--text-secondary)">{tool}</Pill>
                 ))}
@@ -102,15 +102,15 @@ export default function Home() {
         </section>
 
         {/* My History */}
-        <section className="py-20 border-t border-(--border)">
-          <div className="space-y-12 px-6 lg:px-0 max-w-6xl mx-auto">
+        <section className="py-32 border-t border-(--border)">
+          <div className="space-y-16 px-8 lg:px-0 max-w-6xl mx-auto">
             <SectionHeader
               title="My History"
               subtitle="A quick look at milestones and recent work."
             />
 
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.2 }}
@@ -122,9 +122,9 @@ export default function Home() {
                   variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
                   transition={{ duration: 0.45, ease: "easeOut" }}
                 >
-                  <Card className="h-full flex flex-col gap-4 shadow-lg shadow-blue-500/10 hover:-translate-y-1 transition-transform">
-                    <div className="flex items-center gap-3">
-                      <Pill className="bg-(--surface-elevated) text-(--accent) border border-(--accent)/30">{item.year}</Pill>
+                  <Card className="h-full flex flex-col gap-5 shadow-lg shadow-blue-500/10 hover:-translate-y-1 transition-transform">
+                    <div className="flex items-center gap-4">
+                      <Pill className="bg-(--surface-elevated) text-(--accent) border border-(--accent)/50">{item.year}</Pill>
                       <h3 className="text-lg font-semibold text-(--text-primary)">{item.title}</h3>
                     </div>
                     <p className="text-(--text-secondary) leading-relaxed">{item.detail}</p>

@@ -1,1 +1,1 @@
-export const pillBase = 'inline-block px-5 py-1.5 text-sm rounded-full bg-(--accent-soft) text-(--accent) border border-(--accent)/20';
+export const pillBase = 'text-center inline-block px-10 py-2.5 text-sm rounded-lg bg-(--accent-soft) text-(--accent) border border-(--accent)/50';

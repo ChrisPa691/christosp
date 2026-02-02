@@ -44,35 +44,13 @@ export default function RootLayout({
 
             --text-primary: #E5E7EB;
             --text-secondary: #9CA3AF;
-            --text-muted: #6B7280;
+            --text-muted: #9CA3AF;
             --text-inverted: #0B0F14;
 
             --accent: #3B82F6;
             --accent-hover: #2563EB;
             --accent-soft: #1E3A8A;
             --focus-ring: #60A5FA;
-
-            --success: #14B8A6;
-            --warning: #F59E0B;
-            --error: #EF4444;
-          }
-
-          /* light mode */
-          :root[data-theme="light"] {
-            --bg: #F9FAFB;
-            --surface: #FFFFFF;
-            --surface-elevated: #F3F4F6;
-            --border: #D1D5DB;
-
-            --text-primary: #111827;
-            --text-secondary: #4B5563;
-            --text-muted: #6B7280;
-            --text-inverted: #FFFFFF;
-
-            --accent: #2563EB;
-            --accent-hover: #1D4ED8;
-            --accent-soft: #DBEAFE;
-            --focus-ring: #93C5FD;
 
             --success: #14B8A6;
             --warning: #F59E0B;
@@ -132,7 +110,7 @@ export default function RootLayout({
           }
 
           .page-wrapper {
-            padding-top: 64px;
+            padding-top: 0px;
           }
         `}} />
       </head>

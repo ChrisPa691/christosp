@@ -61,61 +61,14 @@ export default function ProjectsPage() {
 
   return (
     <main>
-      <div className="py-20 space-y-14 px-6 lg:px-0 max-w-6xl mx-auto">
+      <div className="py-32 space-y-16 px-8 lg:px-0 max-w-6xl mx-auto">
         <SectionHeader
-          title="Featured Work"
-          subtitle="Selected projects that blend thoughtful UX with solid engineering."
-        />
-
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={{ show: { transition: { staggerChildren: 0.1 } } }}
-        >
-          {projects.map((project) => (
-            <motion.div
-              key={`featured-${project.title}`}
-              variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.45, ease: "easeOut" }}
-            >
-              <Card className="h-full flex flex-col gap-4 shadow-lg shadow-blue-500/10 hover:-translate-y-1 transition-transform">
-                <div className="space-y-2">
-                  <h3 className="text-xl font-semibold text-(--text-primary)">{project.title}</h3>
-                  <p className="text-(--text-secondary)">{project.description}</p>
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <Pill key={`featured-tag-${project.title}-${tag}`}>{tag}</Pill>
-                  ))}
-                </div>
-
-                <div className="flex flex-wrap gap-3 pt-2 mt-auto">
-                  <Button href={project.github} variant="secondary">
-                    GitHub
-                  </Button>
-                  {project.demo ? (
-                    <Button href={project.demo} variant="primary">
-                      Live Demo
-                    </Button>
-                  ) : (
-                    <Pill className="bg-(--surface-elevated) text-(--text-secondary)">Coming soon</Pill>
-                  )}
-                </div>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <SectionHeader
-          title="All Projects"
+          title="Projects"
           subtitle="Use the filters to jump to what you care about."
         />
 
         <motion.div
-          className="flex flex-wrap gap-3"
+          className="flex flex-wrap gap-4"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
@@ -128,7 +81,7 @@ export default function ProjectsPage() {
                 type="button"
                 onClick={() => setActiveFilter(filter)}
                 className={cn(
-                  "px-4 py-2 text-sm rounded-full border transition-colors shadow-sm",
+                  "px-6 py-3 text-sm rounded-full border transition-colors shadow-sm",
                   isActive
                     ? "bg-(--surface-elevated) border-(--accent) text-(--text-primary) shadow-blue-500/10"
                     : "border-(--border) text-(--text-secondary) hover:border-(--accent) hover:text-(--text-primary)"
@@ -141,7 +94,7 @@ export default function ProjectsPage() {
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           initial="hidden"
           animate="show"
           variants={{ show: { transition: { staggerChildren: 0.08 } } }}
@@ -154,8 +107,8 @@ export default function ProjectsPage() {
                 variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
                 transition={{ duration: 0.45, ease: "easeOut" }}
               >
-                <Card className="h-full flex flex-col gap-4 shadow-lg shadow-blue-500/10 hover:-translate-y-1 transition-transform">
-                  <div className="flex flex-wrap gap-2">
+                <Card className="h-full flex flex-col gap-5 shadow-lg shadow-blue-500/10 hover:-translate-y-1 transition-transform">
+                  <div className="flex flex-wrap gap-3">
                     {project.categories.map((category) => (
                       <Pill
                         key={`${project.title}-${category}`}
@@ -166,18 +119,18 @@ export default function ProjectsPage() {
                     ))}
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <h3 className="text-xl font-semibold text-(--text-primary)">{project.title}</h3>
                     <p className="text-(--text-secondary)">{project.description}</p>
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-3">
                     {project.tags.map((tag) => (
                       <Pill key={`${project.title}-${tag}`}>{tag}</Pill>
                     ))}
                   </div>
 
-                  <div className="flex flex-wrap gap-3 pt-2 mt-auto">
+                  <div className="flex flex-wrap gap-4 pt-3 mt-auto">
                     <Button href={project.github} variant="secondary">
                       GitHub
                     </Button>
