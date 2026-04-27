@@ -8,10 +8,10 @@ import { Pill } from "@/components/Pill";
 
 export default function Home() {
   const history = [
-    { year: "2024", title: "CS studies", detail: "Advanced algorithms, databases, and distributed systems." },
-    { year: "2026", title: "Portfolio refresh", detail: "Rebuilt christosp with Next.js and Tailwind v4." },
-    { year: "2025", title: "Flowboard v1", detail: "Shipped kanban app with auth and real-time lanes." },
     { year: "2023", title: "First production site", detail: "Delivered a responsive client site with modern UI." },
+    { year: "2024", title: "CS studies", detail: "Advanced algorithms, databases, and distributed systems." },
+    { year: "2025", title: "Flowboard v1", detail: "Shipped kanban app with auth and real-time lanes." },
+    { year: "2026", title: "Portfolio refresh", detail: "Rebuilt christosp with Next.js and Tailwind v4." },
   ];
 
   return (
@@ -22,31 +22,47 @@ export default function Home() {
         {/* Hero Section */}
         <section className="min-h-screen flex items-center py-32">
           <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center px-8 lg:px-0">
-            {/* Portrait / Visual */}
+            {/* Info card */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
               className="order-2 lg:order-2"
             >
-              <Card className="relative overflow-hidden w-full max-w-md mx-auto bg-(--surface-elevated)">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(99,102,241,0.22),transparent_35%)]" />
-                <div className="relative aspect-3/4 rounded-lg border border-(--border) flex items-center justify-center bg-[linear-gradient(145deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01))]">
-                  <div className="text-center text-(--text-muted)">
-                    <svg className="w-16 h-16 mx-auto mb-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                    </svg>
-                    <p className="text-xs tracking-wide">Portrait coming soon</p>
+              <Card className="relative overflow-hidden w-full max-w-md mx-auto bg-(--surface-elevated) space-y-7">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(99,102,241,0.15),transparent_50%)] pointer-events-none" />
+
+                <div className="relative flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-(--success) animate-pulse" />
+                    <span className="text-(--text-secondary)">Available for work</span>
+                  </div>
+                  <span className="text-(--accent) text-xs font-medium">EET timezone</span>
+                </div>
+
+                <div className="relative space-y-3">
+                  <p className="text-xs uppercase tracking-widest text-(--text-muted)">What I build</p>
+                  <div className="divide-y divide-(--border)">
+                    {[
+                      { label: "Frontend", tech: "React · Next.js · Tailwind" },
+                      { label: "Backend", tech: "Node.js · Prisma · Postgres" },
+                      { label: "Tooling", tech: "TypeScript · Git · CI/CD" },
+                    ].map((row) => (
+                      <div key={row.label} className="flex items-center justify-between py-3">
+                        <span className="text-sm font-medium text-(--text-primary)">{row.label}</span>
+                        <span className="text-xs text-(--text-muted)">{row.tech}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                <div className="relative mt-6 grid grid-cols-3 gap-4 text-center">
+                <div className="relative grid grid-cols-3 gap-3 text-center">
                   {[
                     { label: "Projects", value: "12+" },
                     { label: "Years", value: "2+" },
-                    { label: "Stack", value: "TypeScript" },
+                    { label: "Stack", value: "TS" },
                   ].map((stat) => (
-                    <div key={stat.label} className="rounded-lg bg-(--surface) border border-(--border) py-3">
+                    <div key={stat.label} className="rounded-lg bg-(--surface) border border-(--border) py-3 px-2">
                       <div className="text-xl font-semibold text-(--text-primary)">{stat.value}</div>
                       <div className="text-xs text-(--text-muted)">{stat.label}</div>
                     </div>
@@ -110,7 +126,7 @@ export default function Home() {
             />
 
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.2 }}
@@ -122,7 +138,7 @@ export default function Home() {
                   variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
                   transition={{ duration: 0.45, ease: "easeOut" }}
                 >
-                  <Card className="h-full flex flex-col gap-5 shadow-lg shadow-blue-500/10 hover:-translate-y-1 transition-transform">
+                  <Card className="h-full flex flex-col gap-4 shadow-lg shadow-blue-500/10 hover:-translate-y-1 transition-transform text-left">
                     <div className="flex items-center gap-4">
                       <Pill className="bg-(--surface-elevated) text-(--accent) border border-(--accent)/50">{item.year}</Pill>
                       <h3 className="text-lg font-semibold text-(--text-primary)">{item.title}</h3>

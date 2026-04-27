@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday ❤️</title>
+  <style>
+    :root {
+      --heart-size: 400px;   /* heart outline size */
+      --photo-size: 420px;   /* slideshow image box */
+      --slide-ms: 1800;      /* time per photo */
+      --fade-ms: 600;        /* fade duration */
+      --orbit-radius: 150px; /* how far the heart orbits */
+      --orbit-seconds: 10s;  /* orbit speed */
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at top, #1a0b12, #07040a 60%, #000);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: white;
+      overflow: hidden;
+    }
+
+    .wrap {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: grid;
+      place-items: center;
+      gap: 22px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    /* Slides behind */
+    .slideshow {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      z-index: 0;
+    }
+
+    .slide {
+      position: absolute;
+      width: min(var(--photo-size), 92vw);
+      height: min(var(--photo-size), 92vw);
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity var(--fade-ms) ease;
+      border-radius: 18px;
+      box-shadow: 0 0 40px rgba(0,0,0,0.6);
+      will-change: opacity;
+    }
+
+    .slide.show { opacity: 1; }
+
+    /* Heart layer in front */
+    .orbit {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .orbiter {
+      width: 1px;
+      height: 1px;
+      animation: orbit var(--orbit-seconds) linear infinite;
+    }
+
+    @keyframes orbit {
+      0%   { transform: rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg); }
+    }
+
+    .heart {
+      width: var(--heart-size);
+      height: var(--heart-size);
+      background: transparent;
+
+      /* Thicker + brighter outline */
+      border: 10px solid #ff2d7a;
+
+      /* Heart shape */
+      clip-path: path(
+        "M170 300 C110 250 30 190 30 110 C30 50 70 20 110 20 C140 20 160 40 170 55 C180 40 200 20 230 20 C270 20 310 50 310 110 C310 190 230 250 170 300Z"
+      );
+
+      /* Strong glow + contrast */
+      filter:
+        drop-shadow(0 0 18px rgba(255, 45, 122, 0.9))
+        drop-shadow(0 0 36px rgba(255, 45, 122, 0.7))
+        drop-shadow(0 0 64px rgba(255, 45, 122, 0.45));
+
+      transform-origin: center;
+      animation: heartbeat 1.15s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      14%      { transform: scale(1.06); }
+      28%      { transform: scale(0.98); }
+      42%      { transform: scale(1.04); }
+      70%      { transform: scale(1); }
+    }
+
+    /* Message */
+    .msg {
+      position: relative;
+      z-index: 3;
+      max-width: min(720px, 92vw);
+      font-size: clamp(18px, 2.2vw, 28px);
+      line-height: 1.25;
+      letter-spacing: 0.2px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 700ms ease, transform 700ms ease;
+      text-shadow: 0 2px 16px rgba(255, 63, 143, 0.25);
+      margin-top: calc(var(--photo-size) / 2 + 40px);
+    }
+
+    .msg.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hint {
+      position: relative;
+      z-index: 3;
+      opacity: 0.65;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 420px) {
+      :root {
+        --heart-size: 300px;
+        --photo-size: 320px;
+        --orbit-radius: 120px;
+      }
+      .msg { margin-top: 360px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="slideshow" id="slideshow"></div>
+
+    <div class="orbit">
+      <div class="orbiter">
+        <div class="heart" aria-label="heart"></div>
+      </div>
+    </div>
+
+    <div class="msg" id="msg">
+      Happy Birthday my little LAMA!!!
+    </div>
+
+  </div>
+
+  <script>
+    // Configure your slideshow
+    const totalPics = 5;
+    const folder = "pictures";
+    const slideMs = parseInt(
+      getComputedStyle(document.documentElement).getPropertyValue("--slide-ms")
+    ) || 1800;
+
+    const slideshow = document.getElementById("slideshow");
+    const msg = document.getElementById("msg");
+
+    // Create image elements
+    const slides = [];
+    for (let i = 1; i <= totalPics; i++) {
+      const img = document.createElement("img");
+      img.className = "slide";
+      img.alt = `pic${i}`;
+      img.src = `${folder}/pic${i}.jpg`;
+      slideshow.appendChild(img);
+      slides.push(img);
+    }
+
+    // Preload helper (so the first transition is smooth)
+    function preloadImages(imgs) {
+      return Promise.all(
+        imgs.map(
+          (img) =>
+            new Promise((resolve) => {
+              if (img.complete) return resolve(true);
+              img.onload = () => resolve(true);
+              img.onerror = () => resolve(false); // still resolve to keep going
+            })
+        )
+      );
+    }
+
+    function showSlide(index) {
+      slides.forEach((s, i) => {
+        if (i === index) {
+          s.classList.add("show");
+        } else {
+          s.classList.remove("show");
+        }
+      });
+    }
+
+    async function run() {
+      await preloadImages(slides);
+
+      // Start with all hidden
+      slides.forEach(s => s.classList.remove("show"));
+
+      let i = 0;
+
+      // Fade-in the first slide on the next frame (ensures transition triggers)
+      requestAnimationFrame(() => {
+        slides[i].classList.add("show");
+      });
+
+      const interval = setInterval(() => {
+        const prev = i;
+        i++;
+
+        if (i < slides.length) {
+          // Fade out previous, then fade in next on next frame
+          slides[prev].classList.remove("show");
+          requestAnimationFrame(() => slides[i].classList.add("show"));
+        } else {
+          clearInterval(interval);
+          // Keep last slide visible and reveal message
+          setTimeout(() => msg.classList.add("show"), 700);
+        }
+      }, slideMs);
+    }
+
+    run();
+  </script>
+</body>
+</html>

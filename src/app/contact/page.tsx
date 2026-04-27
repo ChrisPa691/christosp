@@ -212,13 +212,6 @@ export default function ContactPage() {
           </Card>
         </div>
 
-        <div className="pt-12 space-y-8">
-          <SectionHeader
-            title="Let&apos;s build something"
-            subtitle="Have an idea or need a hand? I&apos;m open to collaborations and freelance work."
-          />
-
-        </div>
       </div>
     </main>
   );

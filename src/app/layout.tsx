@@ -97,12 +97,6 @@ export default function RootLayout({
             letter-spacing: -0.008em;
           }
 
-          h3 {
-            font-size: clamp(1.55rem, 3vw, 2.1rem);
-            font-weight: 700;
-            line-height: 1.2;
-          }
-
           p {
             font-size: 1rem;
             line-height: 1.65;
