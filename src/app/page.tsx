@@ -29,44 +29,43 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
               className="order-2 lg:order-2"
             >
-              <Card className="relative overflow-hidden w-full max-w-md mx-auto bg-(--surface-elevated) space-y-7">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(99,102,241,0.15),transparent_50%)] pointer-events-none" />
+              <Card className="relative overflow-hidden w-full max-w-md mx-auto bg-(--surface-elevated) p-0">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.16),transparent_38%),radial-gradient(circle_at_80%_0%,rgba(20,184,166,0.16),transparent_34%)] pointer-events-none" />
 
-                <div className="relative flex items-center justify-between text-sm">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-(--success) animate-pulse" />
-                    <span className="text-(--text-secondary)">Available for work</span>
+                <div className="relative p-6 space-y-6">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-sm text-(--text-secondary)">
+                      <span className="h-2 w-2 rounded-full bg-(--success) animate-pulse" />
+                      Open to opportunities
+                    </div>
+                    <Pill className="text-xs">EET</Pill>
                   </div>
-                  <span className="text-(--accent) text-xs font-medium">EET timezone</span>
-                </div>
 
-                <div className="relative space-y-3">
-                  <p className="text-xs uppercase tracking-widest text-(--text-muted)">What I build</p>
-                  <div className="divide-y divide-(--border)">
+                  <div className="rounded-2xl border border-(--border) bg-(--surface) p-5">
+                    <div className="flex items-center gap-4">
+                      <div className="h-20 w-20 rounded-2xl bg-linear-to-br from-blue-500/35 via-cyan-500/25 to-emerald-500/35 border border-(--border) flex items-center justify-center text-2xl font-semibold text-(--text-primary)">
+                        CP
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-lg font-semibold text-(--text-primary)">Christos P.</p>
+                        <p className="text-sm text-(--text-secondary)">Full-Stack Developer</p>
+                        <p className="text-xs text-(--text-muted)">React, Next.js, TypeScript, Node.js</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-3 text-center">
                     {[
-                      { label: "Frontend", tech: "React · Next.js · Tailwind" },
-                      { label: "Backend", tech: "Node.js · Prisma · Postgres" },
-                      { label: "Tooling", tech: "TypeScript · Git · CI/CD" },
-                    ].map((row) => (
-                      <div key={row.label} className="flex items-center justify-between py-3">
-                        <span className="text-sm font-medium text-(--text-primary)">{row.label}</span>
-                        <span className="text-xs text-(--text-muted)">{row.tech}</span>
+                      { label: "Projects", value: "12+" },
+                      { label: "Stack", value: "Modern" },
+                      { label: "Response", value: "24h" },
+                    ].map((stat) => (
+                      <div key={stat.label} className="rounded-lg border border-(--border) bg-(--surface) py-3 px-2">
+                        <p className="text-base font-semibold text-(--text-primary)">{stat.value}</p>
+                        <p className="text-xs text-(--text-muted)">{stat.label}</p>
                       </div>
                     ))}
                   </div>
-                </div>
-
-                <div className="relative grid grid-cols-3 gap-3 text-center">
-                  {[
-                    { label: "Projects", value: "12+" },
-                    { label: "Years", value: "2+" },
-                    { label: "Stack", value: "TS" },
-                  ].map((stat) => (
-                    <div key={stat.label} className="rounded-lg bg-(--surface) border border-(--border) py-3 px-2">
-                      <div className="text-xl font-semibold text-(--text-primary)">{stat.value}</div>
-                      <div className="text-xs text-(--text-muted)">{stat.label}</div>
-                    </div>
-                  ))}
                 </div>
               </Card>
             </motion.div>

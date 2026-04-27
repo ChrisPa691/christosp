@@ -15,7 +15,7 @@ import {
 import type { FooterProps } from './Footer.types';
 
 export function Footer({ className }: FooterProps) {
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getUTCFullYear();
 
   return (
     <footer className={cn(footerRoot, className)}>
