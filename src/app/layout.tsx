@@ -3,6 +3,7 @@ import { Space_Grotesk, Manrope, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar/index";
 import { Footer } from "@/components/Footer/index";
+import { Analytics } from "@vercel/analytics/next";
 
 const displayFont = Space_Grotesk({
   variable: "--font-display",
@@ -120,6 +121,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </div>
+        <Analytics />
       </body>
     </html>
   );

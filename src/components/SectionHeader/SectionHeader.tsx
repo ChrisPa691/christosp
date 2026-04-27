@@ -12,6 +12,7 @@ export const SectionHeader = React.forwardRef<HTMLHeadingElement, SectionHeaderP
         <HeadingTag className={sectionTitle} ref={forwardedRef}>
           {title}
         </HeadingTag>
+        <div className="w-10 h-0.5 bg-linear-to-r from-blue-500 to-cyan-400 rounded-full" />
         {subtitle && <p className={sectionSubtitle}>{subtitle}</p>}
       </div>
     );

@@ -1,6 +1,8 @@
-export const footerRoot = 'w-full bg-(--surface) border-t border-(--border) py-12 mt-auto';
-export const footerInner = 'flex justify-between items-center flex-wrap gap-4 md:flex-row sm:flex-col sm:text-center';
-export const footerText = 'text-(--text-secondary) text-base m-0 md:order-1 sm:order-2';
-export const footerLinks = 'flex items-center gap-5 md:order-2 sm:order-1';
-export const footerLink = 'text-(--text-secondary) no-underline text-base transition-colors hover:text-(--text-primary)';
-export const footerSeparator = 'text-(--text-muted) select-none';
+export const footerRoot = 'w-full mt-auto';
+export const footerInner = 'flex justify-between items-center flex-wrap gap-4 py-6 border-t border-(--border)';
+export const footerBrand = 'flex flex-col gap-0.5';
+export const footerBrandName = 'text-sm font-semibold text-(--text-primary)';
+export const footerBrandSub = 'text-xs text-(--text-muted)';
+export const footerLinks = 'flex items-center gap-4';
+export const footerLink = 'text-sm text-(--text-muted) no-underline font-medium transition-colors hover:text-(--text-primary)';
+export const footerSeparator = 'text-(--border) text-xs select-none';

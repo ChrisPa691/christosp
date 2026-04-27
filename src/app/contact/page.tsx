@@ -97,50 +97,61 @@ export default function ContactPage() {
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <Card className="space-y-6">
-            <div className="space-y-2">
+          <Card className="space-y-8 relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-(--accent) to-transparent" />
+
+            <div className="space-y-2 pt-1">
               <h3 className="text-2xl font-semibold text-(--text-primary)">Let&apos;s talk</h3>
-              <p className="text-(--text-secondary)">
-                Prefer email? Use the form or click below to open your mail client.
+              <p className="text-sm text-(--text-secondary)">
+                Prefer email? Use the form or reach out directly — I usually reply within a day.
               </p>
             </div>
 
-            <div className="space-y-3">
-              <div>
-                <div className="text-sm text-(--text-muted)">Email</div>
-                <a
-                  className="text-(--text-primary) hover:text-(--accent) transition-colors"
-                  href="mailto:christos@example.com"
-                >
-                  christos@example.com
-                </a>
-              </div>
+            <div className="space-y-4">
+              <a
+                href="mailto:christos@example.com"
+                className="flex items-center gap-3 group"
+              >
+                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-(--surface-elevated) border border-(--border) text-(--text-muted) group-hover:border-(--accent)/50 group-hover:text-(--accent) transition-all">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                  </svg>
+                </span>
+                <div>
+                  <div className="text-xs text-(--text-muted) mb-0.5">Email</div>
+                  <div className="text-sm font-medium text-(--text-primary) group-hover:text-(--accent) transition-colors">christos@example.com</div>
+                </div>
+              </a>
 
-              <div>
-                <div className="text-sm text-(--text-muted)">Location</div>
-                <div className="text-(--text-secondary)">Remote • EET</div>
+              <div className="flex items-center gap-3">
+                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-(--surface-elevated) border border-(--border) text-(--text-muted)">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                  </svg>
+                </span>
+                <div>
+                  <div className="text-xs text-(--text-muted) mb-0.5">Location</div>
+                  <div className="text-sm font-medium text-(--text-secondary)">Remote · EET</div>
+                </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-4">
-              <a
-                href="https://github.com/ChrisPa691"
-                className="text-(--text-secondary) hover:text-(--accent) transition-colors"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="GitHub"
-              >
-                GitHub
-              </a>
-              <a
-                href="https://www.linkedin.com/in/cpaparistodemou/"
-                className="text-(--text-secondary) hover:text-(--accent) transition-colors"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn"
-              >
-                LinkedIn
-              </a>
+            <div className="flex items-center gap-3 pt-2 border-t border-(--border)">
+              {[
+                { href: "https://github.com/ChrisPa691", label: "GitHub" },
+                { href: "https://www.linkedin.com/in/cpaparistodemou/", label: "LinkedIn" },
+              ].map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-medium text-(--text-secondary) hover:text-(--accent) transition-colors"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {link.label} ↗
+                </a>
+              ))}
             </div>
           </Card>
 
@@ -205,8 +216,8 @@ export default function ContactPage() {
                 <p className="text-sm text-(--error)">{error || "Could not send message. Please email me directly."}</p>
               )}
 
-              <Button type="submit" variant="primary" className={cn(isDisabled && "opacity-70 cursor-not-allowed")}> 
-                {status === "loading" ? "Sending..." : "Send message"}
+              <Button type="submit" variant="primary" className={cn("w-full sm:w-auto", isDisabled && "opacity-70 cursor-not-allowed")}>
+                {status === "loading" ? "Sending…" : "Send message"}
               </Button>
             </form>
           </Card>

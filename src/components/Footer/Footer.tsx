@@ -3,12 +3,14 @@ import { Container } from '@/components/Container';
 import { cn } from '@/lib/cn';
 import { socialLinks } from '@/components/nav.config';
 import {
+  footerBrand,
+  footerBrandName,
+  footerBrandSub,
   footerInner,
   footerLink,
   footerLinks,
   footerRoot,
   footerSeparator,
-  footerText,
 } from './Footer.styles';
 import type { FooterProps } from './Footer.types';
 
@@ -18,7 +20,13 @@ export function Footer({ className }: FooterProps) {
   return (
     <footer className={cn(footerRoot, className)}>
       <Container className={footerInner}>
-        <p className={footerText}>© {currentYear} Christos. All rights reserved.</p>
+        <div className={footerBrand}>
+          <span className={footerBrandName}>
+            Christos<span className="text-(--accent)">.</span>
+          </span>
+          <span className={footerBrandSub}>© {currentYear} All rights reserved.</span>
+        </div>
+
         <div className={footerLinks}>
           {socialLinks.map((link, index) => (
             <React.Fragment key={link.href}>

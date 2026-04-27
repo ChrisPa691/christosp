@@ -81,10 +81,10 @@ export default function ProjectsPage() {
                 type="button"
                 onClick={() => setActiveFilter(filter)}
                 className={cn(
-                  "px-6 py-3 text-sm rounded-full border transition-colors shadow-sm",
+                  "px-4 py-1.5 text-sm font-medium rounded-full border transition-all duration-200",
                   isActive
-                    ? "bg-(--surface-elevated) border-(--accent) text-(--text-primary) shadow-blue-500/10"
-                    : "border-(--border) text-(--text-secondary) hover:border-(--accent) hover:text-(--text-primary)"
+                    ? "bg-(--accent) border-(--accent) text-white shadow-md shadow-blue-500/30"
+                    : "border-(--border) text-(--text-secondary) hover:border-(--accent)/50 hover:text-(--text-primary) bg-(--surface)"
                 )}
               >
                 {filter}
@@ -107,41 +107,43 @@ export default function ProjectsPage() {
                 variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
                 transition={{ duration: 0.45, ease: "easeOut" }}
               >
-                <Card className="h-full flex flex-col gap-5 shadow-lg shadow-blue-500/10 hover:-translate-y-1 transition-transform">
-                  <div className="flex flex-wrap gap-3">
+                <Card className="h-full flex flex-col gap-5 shadow-lg shadow-blue-500/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-(--accent) via-cyan-500/40 to-transparent" />
+
+                  <div className="flex flex-wrap gap-2 pt-1">
                     {project.categories.map((category) => (
                       <Pill
                         key={`${project.title}-${category}`}
-                        className="bg-(--surface-elevated) text-(--text-secondary)"
+                        className="bg-(--surface-elevated) text-(--text-muted) border-0"
                       >
                         {category}
                       </Pill>
                     ))}
                   </div>
 
-                  <div className="space-y-3">
-                    <h3 className="text-xl font-semibold text-(--text-primary)">{project.title}</h3>
-                    <p className="text-(--text-secondary)">{project.description}</p>
+                  <div className="space-y-2">
+                    <h3 className="text-lg font-semibold text-(--text-primary)">{project.title}</h3>
+                    <p className="text-sm text-(--text-secondary) leading-relaxed">{project.description}</p>
                   </div>
 
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
                       <Pill key={`${project.title}-${tag}`}>{tag}</Pill>
                     ))}
                   </div>
 
-                  <div className="flex flex-wrap gap-4 pt-3 mt-auto">
-                    <Button href={project.github} variant="secondary">
-                      GitHub
+                  <div className="flex flex-wrap gap-3 pt-2 mt-auto items-center">
+                    <Button href={project.github} variant="secondary" target="_blank">
+                      GitHub ↗
                     </Button>
                     {showDemoButton ? (
                       <Button href={project.demo} variant="primary">
-                        Live Demo
+                        Live Demo →
                       </Button>
                     ) : (
-                      <Pill className="bg-(--surface-elevated) text-(--text-secondary)">
+                      <span className="text-xs text-(--text-muted) font-medium px-3 py-1 rounded-full border border-(--border)">
                         Coming soon
-                      </Pill>
+                      </span>
                     )}
                   </div>
                 </Card>

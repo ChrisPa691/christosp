@@ -78,14 +78,18 @@ export default function Home() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="order-1 lg:order-1 space-y-10"
             >
-              <div className="inline-flex items-center gap-3 rounded-full border border-(--border) bg-(--surface) px-6 py-3 text-(--text-secondary) text-sm shadow-sm shadow-blue-500/10">
-                <span className="h-2 w-2 rounded-full bg-(--accent) animate-pulse" />
+              <div className="inline-flex items-center gap-2.5 rounded-full border border-(--accent)/25 bg-(--accent-soft) px-4 py-2 text-(--accent) text-sm font-medium shadow-sm shadow-blue-500/10">
+                <span className="h-1.5 w-1.5 rounded-full bg-(--accent) animate-pulse" />
                 Available for freelance & collaborations
               </div>
 
               <div className="space-y-6">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight">
-                  I build confident web experiences that feel fast, clear, and intentional.
+                  I build{" "}
+                  <span className="bg-linear-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                    confident
+                  </span>{" "}
+                  web experiences that feel fast, clear, and intentional.
                 </h1>
                 <p className="text-lg text-(--text-secondary) max-w-2xl leading-relaxed">
                   Full-stack developer and CS student focused on product velocity and polish. I ship React/Next.js apps,
@@ -138,12 +142,13 @@ export default function Home() {
                   variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
                   transition={{ duration: 0.45, ease: "easeOut" }}
                 >
-                  <Card className="h-full flex flex-col gap-4 shadow-lg shadow-blue-500/10 hover:-translate-y-1 transition-transform text-left">
-                    <div className="flex items-center gap-4">
-                      <Pill className="bg-(--surface-elevated) text-(--accent) border border-(--accent)/50">{item.year}</Pill>
-                      <h3 className="text-lg font-semibold text-(--text-primary)">{item.title}</h3>
+                  <Card className="h-full flex flex-col gap-4 shadow-lg shadow-blue-500/10 text-left relative overflow-hidden">
+                    <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-(--accent) to-transparent" />
+                    <div className="flex items-center gap-3 pt-1">
+                      <Pill>{item.year}</Pill>
+                      <h3 className="text-base font-semibold text-(--text-primary)">{item.title}</h3>
                     </div>
-                    <p className="text-(--text-secondary) leading-relaxed">{item.detail}</p>
+                    <p className="text-sm text-(--text-secondary) leading-relaxed">{item.detail}</p>
                   </Card>
                 </motion.div>
               ))}
